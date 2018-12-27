@@ -16,6 +16,9 @@ var app = express();
 // Set up an Express Router
 var router = express.Router();
 
+// Require routes.js file and pass router object
+require("./config/routes")(router);
+
 // Designate public folder as a static directory
 app.use(express.static(__dirname + "/public"));
 
@@ -38,21 +41,9 @@ app.use(
 // Have every request go through router middleware
 app.use(router);
 
-// If deployed, use the deployment database. Otherwise use the local mongoHeadlines database
-var db = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
-
-// Connect mongoose to database
 mongoose.connect(
-  db,
-  function(error) {
-    // log any errors connecting with mongoose
-    if (error) {
-      console.log(error);
-      // Or log a success message
-    } else {
-      console.log("mongoose connection is successful");
-    }
-  }
+  "mongodb://localhost/mongoHeadlines",
+  { useNewUrlParser: true }
 );
 
 // Listen on the port
