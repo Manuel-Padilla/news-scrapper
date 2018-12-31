@@ -1,28 +1,41 @@
-<nav class="navbar navbar-inverse">
+<!--Navbar-->
+<nav class="navbar bg-white">
   <div class="container-fluid">
-    <div class="navbar-header">
-      <a href="/" class="navbar-brand">Saved Articles</a>
+    <a class="navbar-brand" href="/">The Daily Mongo Scraperette</a>
+    <div class="row d-flex justify-content-center align-items-center">
+      <button id="scrapeBtn" class="btn btn-danger">Scrape new articles</button>
+      <button id="Art" class="btn info-color-dark">View all articles</button>
     </div>
-    <ul class="nav navbar-nav">
-      <li><a href="/">Home</a></li>
-      <li class="active"><a href="/saved">Saved Articles</a></li>
-    </ul>
-  </div>
 </nav>
+<!--/.Navbar-->
+
+<br />
+
 <div class="jumbotron text-center">
-  <div class="overlay">
-  </div>
-  <div class="background-image"></div>
-  <div class="caption">
-    <h1>Saved Articles</h1>
-    <p>Your Saved Articles</p>
+  <h1 class="title-font">Saved Articles</h1>
+</div>
+<div class="container-fluid article-container">
+  <div class="container mt-5">
+    <div class="row">
+      <div id="wrapper" class="col-lg-12">
+        <div id="articles" class="text-left shadow-lg">
+          {{#each article}} {{#if saved}}
+          <h3 class="text-center mt-3">{{title}}</h3><br>
+          <h5 class="p-3">{{paragraph}}<a class="text-center" href="https://www.houstonchronicle.com{{link}}" target="_blank">Click
+              to read full article</a></h5><br>
+          <button class="addNote btn info-color-dark" data-toggle="modal" data-target="#exampleModal" data-id={{_id}}>Add
+            a note</button>
+          <button class="btn btn-danger saveArtDel" data-id={{_id}}>Delete Saved</button>
+          <hr> {{/if}} {{/each}}
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-<div class="container-fluid article-container"></div>
 
 <footer class="footer">
   <div class="container">
-    <p>New York Times Mongo Scrapper</p>
+    <p class="font-weight-bold">copyright &copy; the daily mongo scraperette 2018</p>
   </div>
 </footer>
 

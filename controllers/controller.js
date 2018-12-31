@@ -1,9 +1,9 @@
 // Required dependencies
-const express = require("express");
-const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
-const request = require("request");
-const cheerio = require("cheerio");
+var express = require("express");
+var bodyParser = require("body-parser");
+var mongoose = require("mongoose");
+var request = require("request");
+var cheerio = require("cheerio");
 const db = require("../models");
 
 module.exports = app => {
@@ -24,10 +24,11 @@ module.exports = app => {
         res.json(err);
       });
   });
-
   // A GET route for scraping website
   app.get("/scrape", function(req, res) {
+    // getting body of the html with request
     request("https://www.houstonchronicle.com/", function(err, response, body) {
+      // Then, we load that into cheerio and save it to $ for a shorthand selector
       var $ = cheerio.load(body);
 
       $("h2.headline").each(function(err, element) {
@@ -40,7 +41,7 @@ module.exports = app => {
           .children("a")
           .attr("href");
 
-        var scrapperObj = {
+        var scrappedObj = {
           link: link,
           title: title,
           paragraph: paragraph
@@ -48,17 +49,18 @@ module.exports = app => {
 
         db.Article.create(scrappedObj)
           .then(function(data) {
-            console.log(data);
+            // console.log(data);
           })
           .catch(function(err) {
             return res.json(err);
           });
       });
-      res.send("Scrape successful!");
+      // If we were able to successfully scrape and save an Article, send a message to the client
+      res.send("Scrape Completed!");
     });
   });
 
-  // Route for getting all articles from the db
+  // Route for getting all Articles from the db
   app.get("/articles", function(req, res) {
     db.Article.find({})
       .then(function(data) {
@@ -72,7 +74,7 @@ module.exports = app => {
       });
   });
 
-  // Route for getting all saved articles from the db and sending it to view
+  // Route for getting all saved Articles from the db and sending it to view
   app.get("/savedarticles", function(req, res) {
     db.Article.find({
       saved: true
@@ -91,7 +93,7 @@ module.exports = app => {
   // Route for saving new article
   app.post("/savedarticles/:id", function(req, res) {
     console.log(req.params.id);
-    db.Article.findOnAndUpdate(
+    db.Article.findOneAndUpdate(
       {
         _id: req.params.id
       },
@@ -102,7 +104,7 @@ module.exports = app => {
       }
     )
       .then(function(data) {
-        res.send("article was saved in database");
+        res.send("article was saved in the DB");
       })
       .catch(function(err) {
         res.json(err);
@@ -130,7 +132,7 @@ module.exports = app => {
       });
   });
 
-  // Route for grabbing a specific article by id, populate it with it's note
+  // Route for grabbing a specific Article by id, populate it with it's note
   app.get("/articles/:id", function(req, res) {
     db.Article.findById(req.params.id)
       .populate("note")
@@ -142,7 +144,7 @@ module.exports = app => {
       });
   });
 
-  // Route for saving/updating an articles associated note
+  // Route for saving/updating an Article's associated Note
   app.post("/articles/:id", function(req, res) {
     db.Note.create(req.body)
       .then(function(data) {
