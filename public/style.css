@@ -30,8 +30,8 @@ a {
 }
 
 .deleteNote {
-  font-weight: 900;
-  font-size: 0.8rem;
+  font-weight: 600;
+  font-size: 2rem;
   color: red;
   cursor: pointer;
 }
@@ -44,7 +44,5 @@ input {
 }
 
 input {
-  height: 40px;
-  font-size: 2rem;
-  margin: 5px;
+  font-size: 1rem;
 }

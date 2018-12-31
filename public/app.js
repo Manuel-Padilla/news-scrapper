@@ -45,14 +45,16 @@ $(document).on("click", ".addNote", function() {
     // With that done, add the note information to the page
     .then(data => {
       // The title of the article
-      $("#notes").append("<h2>" + data.title + "</h2>");
+      $("#notes").append(
+        '<h2 class="ml-2 text-left font-weight-bold">' + data.title + "</h2>"
+      );
       // An input to enter a new title
       $("#notes").append(
         "<input id='titleinput' name='Enter your note' placeholder='Title'>"
       );
       // A button to submit a new note, with the id of the article saved to it
       $(".modal-footer").append(
-        "<button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button> <button class='btn btn-primary' data-dismiss='modal' data-id='" +
+        "<button type='button' class='btn info-color-dark' data-dismiss='modal'>Close</button><button class='btn info-color' data-dismiss='modal' data-id='" +
           data._id +
           "' id='savenote'>Save Note</button>"
       );
@@ -62,9 +64,9 @@ $(document).on("click", ".addNote", function() {
         noteTitles.forEach(element => {
           console.log(noteTitles);
           $("#savedNotes").append(`
-          <li>${element.title} <small data-id="${
+          <li>${element.title} <div data-id="${
             element._id
-          }" class="deleteNote">X</small></li>
+          }" class="deleteNote">remove</div></li>
           `);
         });
       }
