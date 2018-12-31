@@ -1,11 +1,14 @@
 <!--Navbar-->
 <nav class="navbar bg-white">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/">The Daily Mongo Scraperette</a>
-    <div class="row d-flex justify-content-center align-items-center">
-      <button id="scrapeBtn" class="btn btn-danger">Scrape new articles</button>
-      <button id="Art" class="btn info-color-dark">View all articles</button>
+    <div class="container">
+      <a class="navbar-brand" href="/">The Daily Mongo Scraperette</a>
+      <div class="row d-flex">
+        <button id="scrapeBtn" class="btn success-color">Scrape new articles</button>
+        <button id="Art" class="btn info-color">View all articles</button>
+      </div>
     </div>
+  </div>
 </nav>
 <!--/.Navbar-->
 
@@ -18,26 +21,36 @@
   <div class="container mt-5">
     <div class="row">
       <div id="wrapper" class="col-lg-12">
-        <div id="articles" class="text-left shadow-lg">
+        <div id="articles" class="shadow-lg">
           {{#each article}} {{#if saved}}
-          <h3 class="text-center mt-3">{{title}}</h3><br>
-          <h5 class="p-3">{{paragraph}}<a class="text-center" href="https://www.houstonchronicle.com{{link}}" target="_blank">Click
-              to read full article</a></h5><br>
-          <button class="addNote btn info-color-dark" data-toggle="modal" data-target="#exampleModal" data-id={{_id}}>Add
-            a note</button>
-          <button class="btn btn-danger saveArtDel" data-id={{_id}}>Delete Saved</button>
-          <hr> {{/if}} {{/each}}
+          <h3 class="mt-3 ml-3 text-left font-weight-bold">{{title}}</h3><br>
+          <h5 class="p-2 text-left">{{paragraph}}<br><a href="https://www.houstonchronicle.com{{link}}" target="_blank">Click
+              to read full article
+            </a></h5><br>
+          <div class="text-right">
+            <button class="addNote btn info-color-dark" data-toggle="modal" data-target="#exampleModal" data-id={{_id}}>Add
+              a note</button>
+            <button class="saveArtDel btn btn-info" data-id={{_id}}>Delete Saved</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<footer class="footer">
-  <div class="container">
-    <p class="font-weight-bold">copyright &copy; the daily mongo scraperette 2018</p>
+  <div class="container mt-5">
+    <div class="row">
+      <div id="wrapper" class="col-lg-12">
+        <div id="articles" class="shadow-lg">
+          {{/if}} {{/each}}
+        </div>
+      </div>
+    </div>
   </div>
-</footer>
+
+  <footer class="footer container">
+    <p class="font-weight-bold text-right">copyright &copy; the daily mongo scraperette 2018</p>
+  </footer>
+</div>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

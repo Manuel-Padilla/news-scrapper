@@ -13,6 +13,7 @@ body {
   font-family: "Anton", sans-serif;
   font-size: 4.5rem;
   color: #1b81c5;
+  text-shadow: 0 2px 1px #04111a;
 }
 
 a {

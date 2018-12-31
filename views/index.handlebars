@@ -1,10 +1,12 @@
 <!--Navbar-->
 <nav class="navbar bg-white">
   <div class="container-fluid">
-    <a class="navbar-brand">The Daily Mongo Scraperette</a>
-    <div class="row d-flex justify-content-center align-items-center">
-      <button id="scrapeBtn" class="btn btn-danger">Scrape new articles</button>
-      <button id="savedArt" class="btn info-color-dark">Saved articles</button>
+    <div class="container">
+      <a class="navbar-brand">The Daily Mongo Scraperette</a>
+      <div class="row d-flex">
+        <button id="scrapeBtn" class="btn success-color">Scrape new articles</button>
+        <button id="savedArt" class="btn info-color">Saved articles</button>
+      </div>
     </div>
   </div>
 </nav>
@@ -19,48 +21,55 @@
   <div class="container mt-5">
     <div class="row">
       <div id="wrapper" class="col-lg-12">
-        <div id="articles" class="text-left shadow-lg">
+        <div id="articles" class="shadow-lg">
           {{#each article}} {{#unless saved}}
-          <h3 class="mt-3 ml-3 font-weight-bold">{{title}}</h3><br>
-          <h5 class="p-2">{{paragraph}}<a href="https://www.houstonchronicle.com{{link}}" target="_blank">Click to read full
-              article
-            </a></h5>
+          <h3 class="mt-3 ml-3 text-left font-weight-bold">{{title}}</h3><br>
+          <h5 class="p-2 text-left">{{paragraph}}<br><a href="https://www.houstonchronicle.com{{link}}" target="_blank">Click
+              to read full article
+            </a></h5><br>
           <div class="text-right">
             <button class="addNote btn info-color-dark" data-toggle="modal" data-target="#exampleModal" data-id={{_id}}>Add
               a note</button>
-            <button class="btn info-color" data-id={{_id}}>Save Article</button>
+            <button class="saveArt btn info-color" data-id={{_id}}>Save Article</button>
           </div>
-          <hr> {{/unless}} {{/each}}
         </div>
       </div>
     </div>
-
   </div>
 
-  <footer class="footer">
-    <div class="container">
-      <p class="font-weight-bold">copyright &copy; the daily mongo scraperette 2018</p>
+  <div class="container mt-5">
+    <div class="row">
+      <div id="wrapper" class="col-lg-12">
+        <div id="articles" class="shadow-lg">
+          {{/unless}} {{/each}}
+        </div>
+      </div>
     </div>
+  </div>
+
+  <footer class="footer container">
+    <p class="font-weight-bold text-right">copyright &copy; the daily mongo scraperette 2018</p>
   </footer>
+</div>
 
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add Notes</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div id="notes"></div>
-          <ul id="savedNotes"></ul>
-        </div>
-        <div class="modal-footer">
-        </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Notes</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="notes"></div>
+        <ul id="savedNotes"></ul>
+      </div>
+      <div class="modal-footer">
       </div>
     </div>
   </div>
-  {{!-- End Modal --}}
+</div>
+{{!-- End Modal --}}
 </div>
