@@ -1,4 +1,4 @@
-// Grab the articles as a json
+// JSON articles
 $(document).on("click", ".scrape-new", function() {
   $.ajax({
     method: "GET",
@@ -18,6 +18,7 @@ $(document).on("click", "#savedArt", function() {
     window.location.href = "/savedarticles";
   });
 });
+
 $(document).on("click", "#Art", function() {
   $.ajax({
     method: "GET",
@@ -28,29 +29,29 @@ $(document).on("click", "#Art", function() {
   });
 });
 
-// Whenever someone clicks a add a note button
+// Add a note button event
 $(document).on("click", ".addNote", function() {
-  // // Empty the notes from the note section
+  // Empty the notes from the note section
   $("#notes").empty();
   $("#savedNotes").empty();
   $(".modal-footer").empty();
   // Save the id from the p tag
   var thisId = $(this).attr("data-id");
 
-  // Now make an ajax call for the Article
+  // Article ajax call
   $.ajax({
     method: "GET",
     url: "/articles/" + thisId
   })
-    // With that done, add the note information to the page
+    // note information added to page
     .then(data => {
-      // The title of the article
+      // article title
       $("#notes").append(
         '<h2 class="ml-2 text-left font-weight-bold">' + data.title + "</h2>"
       );
       // An input to enter a new title
       $("#notes").append(
-        "<input id='titleinput' name='Enter your note' placeholder='Title'>"
+        "<input id='titleinput' name='Enter your note' placeholder='Add a note'>"
       );
       // A button to submit a new note, with the id of the article saved to it
       $(".modal-footer").append(
@@ -73,7 +74,7 @@ $(document).on("click", ".addNote", function() {
     });
 });
 
-//When someone deletes a specific note it sends "DELETE" request to server at route deletenote/:id
+// specific note deleted, "DELETE" request sent to server at route deletenote/:id
 $(document).on("click", ".deleteNote", function() {
   var thisId = $(this).attr("data-id");
   $(this)
@@ -86,7 +87,8 @@ $(document).on("click", ".deleteNote", function() {
     console.log(data);
   });
 });
-// When you click the savenote button
+
+// savenote button clicked
 $(document).on("click", "#savenote", function() {
   // Grab the id associated with the article from the submit button
   var thisId = $(this).attr("data-id");
@@ -101,21 +103,19 @@ $(document).on("click", "#savenote", function() {
       // Value taken from note textarea
       body: $("#bodyinput").val()
     }
-  })
-    // With that done
-    .then(function(data) {
-      // Log the response
-      console.log(data);
-      // // Empty the notes section
-      $("#notes").empty();
-    });
+  }).then(function(data) {
+    // Log the response
+    console.log(data);
+    // notes section emptied
+    $("#notes").empty();
+  });
 
-  // Also, remove the values entered in the input and textarea for note entry
+  // values entered in the input and textarea for note entry
   $("#titleinput").val("");
   $("#bodyinput").val("");
 });
 
-//Save article
+// Save article clicked
 $(document).on("click", ".saveArt", function() {
   var thisId = $(this).attr("data-id");
   console.log(thisId);
@@ -128,7 +128,7 @@ $(document).on("click", ".saveArt", function() {
   });
 });
 
-// Delete article
+// Delete article when clicked
 $(document).on("click", ".saveArtDel", function() {
   var thisId = $(this).attr("data-id");
   console.log(thisId);

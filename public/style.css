@@ -18,12 +18,15 @@ body {
 a {
   color: #444;
   font-size: 14px;
-  transition: all 0.3s ease-in-out;
   font-weight: 600;
 }
 
+a:hover {
+  color: #da570b;
+  transition: all 0.3s ease-in-out;
+}
+
 #articles {
-  padding: 10px;
   background: white;
   color: #000;
 }
