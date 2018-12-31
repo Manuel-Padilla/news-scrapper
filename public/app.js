@@ -54,7 +54,7 @@ $(document).on("click", ".addNote", function() {
       );
       // A button to submit a new note, with the id of the article saved to it
       $(".modal-footer").append(
-        "<button type='button' class='btn info-color-dark' data-dismiss='modal'>Close</button><button class='btn info-color' data-dismiss='modal' data-id='" +
+        "<button class='btn info-color btn-small' data-dismiss='modal' data-id='" +
           data._id +
           "' id='savenote'>Save Note</button>"
       );
@@ -64,9 +64,9 @@ $(document).on("click", ".addNote", function() {
         noteTitles.forEach(element => {
           console.log(noteTitles);
           $("#savedNotes").append(`
-          <li>${element.title} <div data-id="${
+          <div class='mt-2 font-weight-bold'>${element.title} <div data-id="${
             element._id
-          }" class="deleteNote">remove</div></li>
+          }" class="deleteNote">remove</div></div>
           `);
         });
       }
